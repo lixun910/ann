@@ -32,6 +32,37 @@
 
 using namespace std;					// make std:: accessible
 
+ANN_DIST_METRIC ANNdistMetric = ANNEuclidean;
+
+double ANN_POW(double v)
+{
+    if (ANNdistMetric == ANNManhattan) {
+        return fabs(v);
+    } else if (ANNdistMetric == ANNEuclidean) {
+        return v * v;
+    } else {
+        return v; // other metric should be fixed here
+    }
+}
+double ANN_ROOT(double x)
+{
+    if (ANNdistMetric == ANNManhattan) {
+        return x;
+    } else if (ANNdistMetric == ANNEuclidean) {
+        return sqrt(x);
+    } else {
+        return x; // other metric should be fixed here
+    }
+}
+double ANN_SUM(double x, double y)
+{
+    return x + y;
+}
+double ANN_DIFF(double x, double y)
+{
+    return y - x;
+}
+
 //----------------------------------------------------------------------
 //	Point methods
 //----------------------------------------------------------------------
